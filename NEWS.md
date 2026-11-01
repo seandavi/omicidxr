@@ -1,6 +1,9 @@
 # omicidxr 0.99.0
 
 * Bioconductor submission.
+* Dated builds are kept for a week, and each week's last build (normally
+  Sunday's) for five weeks, following OmicIDX's retention change
+  (seandavi/omicidx#258); the docs and the aged-out error say so (#22).
 * Network reads are bounded: `omicidx_connect()` sets DuckDB's
   `http_timeout` (30 s) and retries each request up to 4 times with
   backoff, including on HTTP 429, and a failed connect names the release

@@ -84,7 +84,7 @@ con <- attr(db, "con")     # the DBI connection behind it
 | `version` | Source |
 |---|---|
 | `"latest"` (default) | the nightly build at `omicidx.cancerdatasci.org/data/latest/` |
-| `"YYYY-MM-DD"` | a dated nightly build, kept for 30 days |
+| `"YYYY-MM-DD"` | a dated nightly build: the 7 newest are kept, plus each week's last (normally Sunday's) for 5 weeks |
 | `"YYYY-MM"` | the monthly HuggingFace release `seandavis/omicidx@YYYY-MM`; long term and citable |
 
 Query `"latest"` and dated builds in place; they are served without rate
