@@ -98,7 +98,7 @@
 <p>Until omicidxr is in Bioconductor, <code>BiocManager::install("seandavi/omicidxr")</code> installs it from GitHub.</p>
 </section><section class="section level2"><h2 id="connecting">Connecting<a class="anchor" aria-label="anchor" href="#connecting"></a>
 </h2>
-<p><code><a href="../reference/omicidx_connect.html">omicidx_connect()</a></code> returns an ordinary DuckDB DBI connection. The <code>version</code> argument picks the release: <code>"latest"</code> (the nightly build, the default), a dated nightly build <code>"YYYY-MM-DD"</code> (kept for 30 days), or a monthly release <code>"YYYY-MM"</code>, which is kept long term and is the one to cite. This vignette uses <code>"latest"</code>, so its output changes as the databases grow.</p>
+<p><code><a href="../reference/omicidx_connect.html">omicidx_connect()</a></code> returns an ordinary DuckDB DBI connection. The <code>version</code> argument picks the release: <code>"latest"</code> (the nightly build, the default), a dated nightly build <code>"YYYY-MM-DD"</code> (the 7 newest are kept, plus each week’s last build, normally Sunday’s, for 5 weeks), or a monthly release <code>"YYYY-MM"</code>, which is kept long term and is the one to cite. This vignette uses <code>"latest"</code>, so its output changes as the databases grow.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/seandavi/omicidxr" class="external-link">omicidxr</a></span><span class="op">)</span></span>

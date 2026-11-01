@@ -41,7 +41,9 @@ for tab-completable `dplyr` tables.
 - `"latest"`: the nightly build at
   `https://omicidx.cancerdatasci.org/data/latest/`.
 
-- `"YYYY-MM-DD"`: a dated nightly build, kept for 30 days.
+- `"YYYY-MM-DD"`: a dated nightly build. The 7 newest are kept, plus
+  each week's last build (normally Sunday's) for 5 weeks; pin a Sunday
+  build for an analysis you'll rerun over the next month.
 
 - `"YYYY-MM"`: a monthly release on HuggingFace
   (`seandavis/omicidx@YYYY-MM`). Monthly releases are kept long term and
@@ -68,7 +70,7 @@ Many Requests) until the window resets. To avoid it:
 - Set the environment variable `HF_TOKEN` to a HuggingFace access token,
   which raises the limit to that of a signed-in user.
 
-- Within 30 days of a monthly release, connect to the dated build it was
+- Within a week of a monthly release, connect to the dated build it was
   published from (`omicidx_release(con)$publish_date`), which holds the
   same data.
 

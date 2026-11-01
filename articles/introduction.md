@@ -25,7 +25,8 @@ Until omicidxr is in Bioconductor,
 [`omicidx_connect()`](https://seandavi.github.io/omicidxr/reference/omicidx_connect.md)
 returns an ordinary DuckDB DBI connection. The `version` argument picks
 the release: `"latest"` (the nightly build, the default), a dated
-nightly build `"YYYY-MM-DD"` (kept for 30 days), or a monthly release
+nightly build `"YYYY-MM-DD"` (the 7 newest are kept, plus each week’s
+last build, normally Sunday’s, for 5 weeks), or a monthly release
 `"YYYY-MM"`, which is kept long term and is the one to cite. This
 vignette uses `"latest"`, so its output changes as the databases grow.
 

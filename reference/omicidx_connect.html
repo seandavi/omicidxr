@@ -96,7 +96,9 @@ example <code>sradb.study</code> or <code>geometadb.gsm</code>. Use
 
 <ul><li><p><code>"latest"</code>: the nightly build at
 <code>https://omicidx.cancerdatasci.org/data/latest/</code>.</p></li>
-<li><p><code>"YYYY-MM-DD"</code>: a dated nightly build, kept for 30 days.</p></li>
+<li><p><code>"YYYY-MM-DD"</code>: a dated nightly build. The 7 newest are kept,
+plus each week's last build (normally Sunday's) for 5 weeks; pin a
+Sunday build for an analysis you'll rerun over the next month.</p></li>
 <li><p><code>"YYYY-MM"</code>: a monthly release on HuggingFace
 (<code>seandavis/omicidx@YYYY-MM</code>). Monthly releases are kept long term
 and are the version to cite.</p></li>
@@ -119,7 +121,7 @@ make hundreds, so heavy use, or a shared IP address, fails with HTTP
 out the limit, and query the local copy.</p></li>
 <li><p>Set the environment variable <code>HF_TOKEN</code> to a HuggingFace access
 token, which raises the limit to that of a signed-in user.</p></li>
-<li><p>Within 30 days of a monthly release, connect to the dated build it
+<li><p>Within a week of a monthly release, connect to the dated build it
 was published from (<code>omicidx_release(con)$publish_date</code>), which
 holds the same data.</p></li>
 </ul></div>
