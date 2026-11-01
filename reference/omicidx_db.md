@@ -38,42 +38,41 @@ place of a connection.
 ``` r
 db <- omicidx_db()
 db
-#> <omicidx_db> OmicIDX release latest (published 2026-10-23)
+#> <omicidx_db> OmicIDX release latest (published 2026-10-31)
 #> 
 #> geometadb
-#>   geo_supplemental_files    7,098,064
-#>   gpl                          29,060
-#>   gse                         298,108
-#>   gse_gpl                     345,076
-#>   gse_gsm                  10,562,000
-#>   gsm                       8,774,090
+#>   geo_supplemental_files    7,130,018
+#>   gpl                          29,166
+#>   gse                         299,765
+#>   gse_gpl                     345,234
+#>   gse_gsm                  10,615,354
+#>   gsm                       8,818,838
 #> 
 #> main
-#>   bioprojects                      1,130,284
-#>   biosamples                      60,484,224
+#>   bioprojects                      1,133,204
+#>   biosamples                      60,645,792
 #>   db_creation_metadata
-#>   geo_platforms                       29,060
-#>   geo_samples                      8,774,090
-#>   geo_series                         298,108
+#>   geo_platforms                       29,166
+#>   geo_samples                      8,818,838
+#>   geo_series                         299,765
 #>   geo_series_with_rnaseq_counts       27,714
-#>   pubmed_articles                 41,275,240
-#>   sra_accessions                 162,991,962
-#>   sra_experiments                 42,655,706
-#>   sra_runs                        45,553,970
-#>   sra_samples                     44,670,639
-#>   sra_studies                        775,372
+#>   sra_accessions                 163,477,940
+#>   sra_experiments                 42,771,188
+#>   sra_runs                        45,687,189
+#>   sra_samples                     44,784,635
+#>   sra_studies                        777,168
 #> 
 #> sradb
-#>   experiment       42,655,706
-#>   human_runs        8,540,117
-#>   mouse_runs        4,415,567
-#>   rnaseq_runs       9,054,381
-#>   run              45,699,354
-#>   run_with_study   45,699,354
-#>   sample           44,670,639
-#>   sra              45,699,354
-#>   study               775,372
-#>   wgs_runs          9,601,400
+#>   experiment       42,771,188
+#>   human_runs        8,568,803
+#>   mouse_runs        4,426,634
+#>   rnaseq_runs       9,098,952
+#>   run              45,832,573
+#>   run_with_study   45,832,573
+#>   sample           44,784,635
+#>   sra              45,832,573
+#>   study               777,168
+#>   wgs_runs          9,645,478
 #> 
 #> Tables: db$<schema>$<table>. Connection: attr(db, "con").
 db$sradb$study |>
@@ -83,10 +82,10 @@ db$sradb$study |>
 #> # A tibble: 6 × 2
 #>   study_type                   n
 #>   <chr>                    <dbl>
-#> 1 Other                   443600
-#> 2 Transcriptome Analysis  129664
-#> 3 Whole Genome Sequencing 128310
-#> 4 Metagenomics             71399
+#> 1 Other                   444868
+#> 2 Transcriptome Analysis  130005
+#> 3 Whole Genome Sequencing 128447
+#> 4 Metagenomics             71449
 #> 5 Population Genomics        836
 #> 6 Epigenetics                707
 DBI::dbDisconnect(attr(db, "con"))

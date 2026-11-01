@@ -38,6 +38,6 @@ A list with `version` (as passed to
 ``` r
 con <- omicidx_connect()
 omicidx_release(con)$publish_date
-#> [1] "2026-10-23"
+#> [1] "2026-10-31"
 DBI::dbDisconnect(con)
 ```

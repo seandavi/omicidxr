@@ -63,13 +63,13 @@ release[c("version", "publish_date", "transform_sha", "lake_snapshot_id")]
 #> [1] "latest"
 #> 
 #> $publish_date
-#> [1] "2026-10-23"
+#> [1] "2026-10-31"
 #> 
 #> $transform_sha
-#> [1] "2a999e937697b61bfdb3294de36582dd1cc5ab1f"
+#> [1] "d14894249daa03adf0ca793f4185e129cf598ce7"
 #> 
 #> $lake_snapshot_id
-#> [1] 4239
+#> [1] 4767
 ```
 
 To cite OmicIDX, cite the DOI of the monthly release you used, listed
@@ -82,7 +82,7 @@ tag, such as `2026-10`.
 ``` r
 
 omicidx_tables(con)
-#> # A tibble: 29 × 3
+#> # A tibble: 28 × 3
 #>    schema    table                  type      
 #>    <chr>     <chr>                  <chr>     
 #>  1 geometadb geo_supplemental_files VIEW      
@@ -95,7 +95,7 @@ omicidx_tables(con)
 #>  8 main      biosamples             VIEW      
 #>  9 main      db_creation_metadata   BASE TABLE
 #> 10 main      geo_platforms          VIEW      
-#> # ℹ 19 more rows
+#> # ℹ 18 more rows
 ```
 
 The `sradb` and `geometadb` schemas follow the tables of the SRAdb and
@@ -162,42 +162,41 @@ used, and nothing is read until `collect()`.
 
 db <- omicidx_db(con)
 db
-#> <omicidx_db> OmicIDX release latest (published 2026-10-23)
+#> <omicidx_db> OmicIDX release latest (published 2026-10-31)
 #> 
 #> geometadb
-#>   geo_supplemental_files    7,098,064
-#>   gpl                          29,060
-#>   gse                         298,108
-#>   gse_gpl                     345,076
-#>   gse_gsm                  10,562,000
-#>   gsm                       8,774,090
+#>   geo_supplemental_files    7,130,018
+#>   gpl                          29,166
+#>   gse                         299,765
+#>   gse_gpl                     345,234
+#>   gse_gsm                  10,615,354
+#>   gsm                       8,818,838
 #> 
 #> main
-#>   bioprojects                      1,130,284
-#>   biosamples                      60,484,224
+#>   bioprojects                      1,133,204
+#>   biosamples                      60,645,792
 #>   db_creation_metadata
-#>   geo_platforms                       29,060
-#>   geo_samples                      8,774,090
-#>   geo_series                         298,108
+#>   geo_platforms                       29,166
+#>   geo_samples                      8,818,838
+#>   geo_series                         299,765
 #>   geo_series_with_rnaseq_counts       27,714
-#>   pubmed_articles                 41,275,240
-#>   sra_accessions                 162,991,962
-#>   sra_experiments                 42,655,706
-#>   sra_runs                        45,553,970
-#>   sra_samples                     44,670,639
-#>   sra_studies                        775,372
+#>   sra_accessions                 163,477,940
+#>   sra_experiments                 42,771,188
+#>   sra_runs                        45,687,189
+#>   sra_samples                     44,784,635
+#>   sra_studies                        777,168
 #> 
 #> sradb
-#>   experiment       42,655,706
-#>   human_runs        8,540,117
-#>   mouse_runs        4,415,567
-#>   rnaseq_runs       9,054,381
-#>   run              45,699,354
-#>   run_with_study   45,699,354
-#>   sample           44,670,639
-#>   sra              45,699,354
-#>   study               775,372
-#>   wgs_runs          9,601,400
+#>   experiment       42,771,188
+#>   human_runs        8,568,803
+#>   mouse_runs        4,426,634
+#>   rnaseq_runs       9,098,952
+#>   run              45,832,573
+#>   run_with_study   45,832,573
+#>   sample           44,784,635
+#>   sra              45,832,573
+#>   study               777,168
+#>   wgs_runs          9,645,478
 #> 
 #> Tables: db$<schema>$<table>. Connection: attr(db, "con").
 
@@ -209,11 +208,11 @@ db$geometadb$gse |>
 #> # A tibble: 5 × 3
 #>   gse       title                                                submission_date
 #>   <chr>     <chr>                                                <date>         
-#> 1 GSE240638 Gene expression profile at the single cell level of… 2023-08-10     
-#> 2 GSE241996 Single cell RNA sequencing monitoring the developme… 2023-08-30     
-#> 3 GSE241997 Single cell RNA sequencing of the in vivo mouse TME  2023-08-30     
-#> 4 GSE242428 Characterization of CD4+ and CD8+ T cells responses… 2023-09-06     
-#> 5 GSE242556 Simultaneous estimation of gene regulatory network … 2023-09-07
+#> 1 GSE288996 Simultaneous single cell CRISPR, RNA, and ATAC-seq … 2025-02-07     
+#> 2 GSE267097 Single Cell Analysis of Pre-Treatment Peripheral Im… 2024-05-09     
+#> 3 GSE226149 Gene expression profile at single cell level from G… 2023-02-26     
+#> 4 GSE305735 Whole-transcriptome-scale isoform-resolved spatial … 2025-08-18     
+#> 5 GSE287463 Single Cell Gene Expression Profiling of CD45+ Cell… 2025-01-20
 ```
 
 ## SRAdb and GEOmetadb helpers
@@ -230,10 +229,10 @@ sra_convert(con, "GSM4996084", c("gse", "study", "experiment", "run"))
 #> # A tibble: 4 × 5
 #>   study     experiment run         gse       gsm       
 #>   <chr>     <chr>      <chr>       <chr>     <chr>     
-#> 1 SRP299835 SRX9759115 SRR13332242 GSE164073 GSM4996084
-#> 2 SRP299835 SRX9759115 SRR13332244 GSE164073 GSM4996084
-#> 3 SRP299835 SRX9759115 SRR13332245 GSE164073 GSM4996084
-#> 4 SRP299835 SRX9759115 SRR13332243 GSE164073 GSM4996084
+#> 1 SRP299835 SRX9759115 SRR13332243 GSE164073 GSM4996084
+#> 2 SRP299835 SRX9759115 SRR13332242 GSE164073 GSM4996084
+#> 3 SRP299835 SRX9759115 SRR13332244 GSE164073 GSM4996084
+#> 4 SRP299835 SRX9759115 SRR13332245 GSE164073 GSM4996084
 ```
 
 The samples and platform of a GEO series, and the characteristics of its
@@ -305,11 +304,11 @@ geo_search(con, "glioblastoma", limit = 5) |>
 #> # A tibble: 5 × 2
 #>   gse       title                                                               
 #>   <chr>     <chr>                                                               
-#> 1 GSE102136 Single Copy Loss of Tet1 disrupts neural stem cell differentiation …
-#> 2 GSE108013 Microenvironmental-derived Regulation of HIF-Signaling Drives Trans…
-#> 3 GSE241037 spatiotemporal single-cell transcriptomics in mouse and human to in…
-#> 4 GSE242790 Repeated peripheral infusions of anti-EGFRvIII CAR T cells in combi…
-#> 5 GSE248352 Antitumor effects of intravenous natural killer cell infusion in an…
+#> 1 GSE348401 Microglial lipid signaling drives glioblastoma invasion and represe…
+#> 2 GSE324817 Overlapping MHC class I/II epitopes program monocyte-derived dendri…
+#> 3 GSE325592 Overlapping MHC class I/II epitopes program monocyte-derived dendri…
+#> 4 GSE348147 Macrophage lipid signaling drives glioblastoma invasion and represe…
+#> 5 GSE325601 Overlapping MHC class I/II epitopes program monocyte-derived dendri…
 ```
 
 ### List-columns
@@ -327,11 +326,8 @@ SRA studies, drop out unless you pass `keep_empty = TRUE`:
 geo_search(con, "glioblastoma", limit = 5) |>
     dplyr::select(gse, sra_studies) |>
     tidyr::unnest_longer(sra_studies)
-#> # A tibble: 2 × 2
-#>   gse       sra_studies
-#>   <chr>     <chr>      
-#> 1 GSE102136 SRP114556  
-#> 2 GSE108013 SRP126639
+#> # A tibble: 0 × 2
+#> # ℹ 2 variables: gse <chr>, sra_studies <chr>
 ```
 
 ## Downloading FASTQs
@@ -413,7 +409,7 @@ DBI::dbDisconnect(con)
 ``` r
 
 sessionInfo()
-#> R version 4.6.1 (2026-06-24)
+#> R version 4.6.2 (2026-10-29)
 #> Platform: x86_64-pc-linux-gnu
 #> Running under: Ubuntu 24.04.5 LTS
 #> 
@@ -441,9 +437,9 @@ sessionInfo()
 #>  [5] xfun_0.62        DBI_1.3.0        otel_0.2.0       purrr_1.2.2     
 #>  [9] generics_0.1.4   jsonlite_2.0.0   glue_1.8.1       dbplyr_2.6.0    
 #> [13] htmltools_0.5.9  rmarkdown_2.32   evaluate_1.0.5   tibble_3.3.1    
-#> [17] fastmap_1.2.0    yaml_2.3.12      lifecycle_1.0.5  duckdb_1.5.6    
-#> [21] compiler_4.6.1   dplyr_1.2.1      blob_1.3.0       pkgconfig_2.0.3 
+#> [17] fastmap_1.2.0    yaml_2.3.12      lifecycle_1.0.5  duckdb_2.0.0    
+#> [21] compiler_4.6.2   dplyr_1.2.1      blob_1.3.0       pkgconfig_2.0.3 
 #> [25] tidyr_1.3.2      digest_0.6.39    R6_2.6.1         utf8_1.2.6      
 #> [29] tidyselect_1.2.1 pillar_1.11.1    magrittr_2.0.5   withr_3.0.3     
-#> [33] tools_4.6.1
+#> [33] tools_4.6.2
 ```

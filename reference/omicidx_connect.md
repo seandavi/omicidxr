@@ -90,6 +90,6 @@ extensions (`httpfs`, `json`) are downloaded once and cached in
 con <- omicidx_connect()
 DBI::dbGetQuery(con, "SELECT count(*) AS n FROM sradb.study")
 #>        n
-#> 1 775372
+#> 1 777168
 DBI::dbDisconnect(con)
 ```

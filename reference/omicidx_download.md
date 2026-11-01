@@ -57,11 +57,11 @@ the limit resets. Setting `HF_TOKEN` raises the limit.
 path <- omicidx_download(
     "latest", tempfile(fileext = ".duckdb"), tables = "geometadb.gpl"
 )
-#> Copying 1 tables, about 0.0024 GB of Parquet, to /tmp/RtmpRefzl8/file1b097b683f8d.duckdb. The DuckDB file can be several times larger.
+#> Copying 1 tables, about 0.0026 GB of Parquet, to /tmp/Rtmp02ybiz/file1a882acdff06.duckdb. The DuckDB file can be several times larger.
 #> Copying geometadb.gpl
 con <- DBI::dbConnect(duckdb::duckdb(), path, read_only = TRUE)
 #> duckdb keeps downloaded extensions and secrets in a temporary directory:
-#> ℹ /tmp/RtmpRefzl8/duckdb
+#> ℹ /tmp/Rtmp02ybiz/duckdb
 #> This is removed when the R session ends.
 #> • Extensions are re-downloaded each session.
 #> • Secrets are lost.
@@ -70,6 +70,6 @@ con <- DBI::dbConnect(duckdb::duckdb(), path, read_only = TRUE)
 #> ℹ See ?duckdb_storage for details and alternatives.
 DBI::dbGetQuery(con, "SELECT count(*) AS n FROM geometadb.gpl")
 #>       n
-#> 1 29060
+#> 1 29166
 DBI::dbDisconnect(con)
 ```
