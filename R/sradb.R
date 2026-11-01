@@ -47,7 +47,7 @@ check_accessions <- function(x, types = names(accession_patterns)) {
 
 # One row per SRA run with its accessions; experiments are the bridge to GEO.
 sra_links <- function(con) {
-    dplyr::tbl(con, I("sradb.sra")) |>
+    remote_tbl(con, "sradb.sra") |>
         dplyr::select(
             run = "run_accession", experiment = "experiment_accession",
             sample = "sample_accession", study = "study_accession",
@@ -57,9 +57,9 @@ sra_links <- function(con) {
 }
 
 geo_links <- function(con) {
-    dplyr::tbl(con, I("geometadb.gsm")) |>
+    remote_tbl(con, "geometadb.gsm") |>
         dplyr::select("gsm", "gpl", experiment = "sra_experiment") |>
-        dplyr::left_join(dplyr::tbl(con, I("geometadb.gse_gsm")), by = "gsm")
+        dplyr::left_join(remote_tbl(con, "geometadb.gse_gsm"), by = "gsm")
 }
 
 #' Convert between SRA, GEO, BioSample and BioProject accessions
@@ -178,7 +178,7 @@ sra_runs <- function(con, in_acc) {
     ids <- ids[lengths(ids) > 0L]
     if (length(ids) == 0L) ids <- list(experiment = character())
     pieces <- lapply(names(ids), function(type) {
-        dplyr::tbl(con, I("sradb.sra")) |>
+        remote_tbl(con, "sradb.sra") |>
             dplyr::filter(.data[[by_column[[type]]]] %in% !!ids[[type]]) |>
             dplyr::select(
                 "run_accession", "experiment_accession",
@@ -215,11 +215,11 @@ sra_runs <- function(con, in_acc) {
 geo_samples <- function(con, gse) {
     con <- omicidx_con(con)
     gse <- check_accessions(gse, "gse")
-    platforms <- dplyr::tbl(con, I("geometadb.gpl")) |>
+    platforms <- remote_tbl(con, "geometadb.gpl") |>
         dplyr::select("gpl", platform_title = "title")
-    dplyr::tbl(con, I("geometadb.gse_gsm")) |>
+    remote_tbl(con, "geometadb.gse_gsm") |>
         dplyr::filter(.data$gse %in% !!gse) |>
-        dplyr::inner_join(dplyr::tbl(con, I("geometadb.gsm")), by = "gsm") |>
+        dplyr::inner_join(remote_tbl(con, "geometadb.gsm"), by = "gsm") |>
         dplyr::left_join(platforms, by = "gpl") |>
         dplyr::select(
             "gse", "gsm", "title", "gpl", "platform_title", "organism_ch1",
@@ -251,7 +251,7 @@ geo_samples <- function(con, gse) {
 geo_characteristics <- function(con, gsm) {
     con <- omicidx_con(con)
     gsm <- check_accessions(gsm, "gsm")
-    samples <- dplyr::tbl(con, I("geometadb.gsm")) |>
+    samples <- remote_tbl(con, "geometadb.gsm") |>
         dplyr::filter(.data$gsm %in% !!gsm) |>
         dplyr::select("gsm", "characteristics_ch1", "characteristics_ch2") |>
         dplyr::collect()

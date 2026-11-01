@@ -94,15 +94,24 @@ omicidx_db <- function(con = NULL, version = "latest") {
 }
 
 # dplyr::tbl() on a DBI connection needs dbplyr at run time.
-#' @importFrom dbplyr in_schema
+#' @importFrom dbplyr sql
 NULL
 
 lazy_tbl <- function(env, con, schema, name) {
     force(schema)
     force(name)
-    delayedAssign(name, dplyr::tbl(con, I(paste(schema, name, sep = "."))),
+    delayedAssign(name, remote_tbl(con, paste(schema, name, sep = ".")),
         assign.env = env
     )
+}
+
+# dplyr::tbl() for a "schema.table" name. duckdb 2.0.0 rejects
+# tbl(con, I("schema.table")), and dbplyr::in_schema() fails on every
+# version; a SQL subquery works on all of them.
+remote_tbl <- function(con, qualified) {
+    parts <- strsplit(qualified, ".", fixed = TRUE)[[1]]
+    from <- paste(DBI::dbQuoteIdentifier(con, parts), collapse = ".")
+    dplyr::tbl(con, dbplyr::sql(paste("SELECT * FROM", from)))
 }
 
 #' @export
