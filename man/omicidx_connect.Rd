@@ -33,7 +33,9 @@ example \code{sradb.study} or \code{geometadb.gsm}. Use
 \itemize{
 \item \code{"latest"}: the nightly build at
 \verb{https://omicidx.cancerdatasci.org/data/latest/}.
-\item \code{"YYYY-MM-DD"}: a dated nightly build, kept for 30 days.
+\item \code{"YYYY-MM-DD"}: a dated nightly build. The 7 newest are kept,
+plus each week's last build (normally Sunday's) for 5 weeks; pin a
+Sunday build for an analysis you'll rerun over the next month.
 \item \code{"YYYY-MM"}: a monthly release on HuggingFace
 (\code{seandavis/omicidx@YYYY-MM}). Monthly releases are kept long term
 and are the version to cite.
@@ -59,7 +61,7 @@ make hundreds, so heavy use, or a shared IP address, fails with HTTP
 out the limit, and query the local copy.
 \item Set the environment variable \code{HF_TOKEN} to a HuggingFace access
 token, which raises the limit to that of a signed-in user.
-\item Within 30 days of a monthly release, connect to the dated build it
+\item Within a week of a monthly release, connect to the dated build it
 was published from (\code{omicidx_release(con)$publish_date}), which
 holds the same data.
 }
